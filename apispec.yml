@@ -1,0 +1,196 @@
+openapi: "3.0.2"
+info:
+  title: "Overtime Calculate API"
+  version: "1.0.0"
+  description: "API for calculating overtime"
+  license:
+    name: MIT
+    url: "https://opensource.org/licenses/MIT"
+
+servers:
+  - url: http://127.0.0.1:8000/api
+  - url: http://18.143.145.14/api/v1
+
+paths:
+  /settings:
+    patch:
+      security:
+        - bearerAuth: []
+      tags:
+        - Setting
+      operationId: patchSetting
+      summary: "Update setting"
+      requestBody:
+        required: true
+        content:
+          apliication/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  required:
+                    - key
+                value:
+                  type: integer
+                  required:
+                    - value
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseSuccess'
+        '422':
+          description: validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseError'
+  /employees:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Employees
+      operationId: postEmployee
+      summary: "Post employee"
+      requestBody:
+        required: true
+        content:
+          apliication/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  required:
+                    - name
+                  minLength: 2
+                salary:
+                  type: integer
+                  required:
+                    - salary
+                  maximum: 10000000
+                  minimum: 2000000
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseSuccess'
+        '422':
+          description: validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseError'
+  /overtimes:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Overtimes
+      operationId: postOvertime
+      summary: "Post Overtime"
+      requestBody:
+        required: true
+        content:
+          apliication/json:
+            schema:
+              type: object
+              properties:
+                employee_id:
+                  type: integer
+                  required:
+                    - employee_id
+                date:
+                  type: string
+                  required:
+                    - date
+                time_started:
+                  type: string
+                  required:
+                    - time_started
+                time_ended:
+                  type: string
+                  required:
+                    - time_ended
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseSuccess'
+        '422':
+          description: validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseError'
+  /overtime-pays/calculate:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Overtimes
+      operationId: getOvertimeCalculate
+      summary: "Get Overtime Calculate pay"
+      parameters:
+        - name: month
+          in: query
+          description: month
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseSuccess'
+        '422':
+          description: validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseError'
+
+
+
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    responseSuccess:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Success"
+        error:
+          type: string
+          example: null
+        data:
+          type: object
+          example: null
+    responseError:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: string
+          example: "The name has already been taken."
+        data:
+          type: object
+          example: null
+
