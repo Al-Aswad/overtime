@@ -14,6 +14,10 @@ class Overtime extends Model
 
     protected $guarded = [];
 
+    public function employee(){
+        return $this->belongsTo(Employee::class, 'employee_id', 'id');
+    }
+
     // public function setDate($value)
     // {
     //     $this->attributes['first_name'] = strtolower($value);

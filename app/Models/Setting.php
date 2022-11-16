@@ -12,4 +12,9 @@ class Setting extends Model
     use HasFactory, SoftDeletes, Timestamp;
 
     protected $guarded = [];
+
+    public function referrence()
+    {
+        return $this->belongsTo(Reference::class, 'value');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OvertimeCalculateRequest;
 use App\Http\Requests\OvertimeRequest;
 use App\Repositories\OvertimeRepository;
 use Illuminate\Http\Request;
@@ -26,8 +27,11 @@ class OvertimeController extends Controller
         );
     }
 
-    public function overtimeCalculate()
+    public function overtimeCalculate(OvertimeCalculateRequest $request)
     {
-        //
+        return ResponseFormatter::success(
+            'Calculate overtime successfully',
+            $this->overtimeRepository->overtimeCalculate($request->month),
+        );
     }
 }

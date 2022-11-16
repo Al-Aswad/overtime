@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Helpers\Uuid;
 use Carbon\Traits\Timestamp;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,4 +14,9 @@ class Employee extends Model
     protected $guarded = [];
 
     protected $table = 'employees';
+
+    public function overtimes(){
+
+        return $this->hasMany(Overtime::class, 'employee_id', 'id');
+    }
 }

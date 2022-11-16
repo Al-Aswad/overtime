@@ -13,4 +13,5 @@ class Reference extends Model
     use HasFactory, Timestamp, SoftDeletes;
 
     protected $guarded = [];
+
 }
