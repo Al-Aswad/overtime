@@ -15,8 +15,10 @@ class ClientError extends Exception
 
     public function render()
     {
-        return back()
-            ->withInput()
-            ->withErrors($this->message);
+        return ResponseFormatter::error(
+            $this->message,
+            $this->code,
+            $this->code
+        );
     }
 }

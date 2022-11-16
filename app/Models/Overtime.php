@@ -13,4 +13,10 @@ class Overtime extends Model
     use HasFactory, SoftDeletes, Timestamp;
 
     protected $guarded = [];
+
+    // public function setDate($value)
+    // {
+    //     $this->attributes['first_name'] = strtolower($value);
+    // }
+
 }
