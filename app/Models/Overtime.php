@@ -10,11 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Overtime extends Model
 {
-    use HasFactory, SoftDeletes, Uuid, Timestamp;
-
-    protected $incrementing = false;
-
-    protected $keyType = 'string';
+    use HasFactory, SoftDeletes, Timestamp;
 
     protected $guarded = [];
 }

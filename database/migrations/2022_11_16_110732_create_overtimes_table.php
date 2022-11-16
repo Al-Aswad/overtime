@@ -19,9 +19,7 @@ class CreateOvertimesTable extends Migration
             $table->time('time_started');
             $table->time('time_endeed');
 
-            $table->uuid('employe_id');
-            $table->foreign('employe_id')
-                ->references('id')
+            $table->foreignId('employee_id')
                 ->on('employes')
                 ->onUpdate('cascade')->onDelete('restrict');
 

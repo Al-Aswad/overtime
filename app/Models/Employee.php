@@ -8,13 +8,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Employe extends Model
+class Employee extends Model
 {
-    use HasFactory, Uuid, SoftDeletes, Timestamp;
-
-    protected $incrementing = false;
-
-    protected $keyType = 'string';
+    use HasFactory, SoftDeletes, Timestamp;
 
     protected $guarded = [];
+
+    protected $table = 'employees';
 }

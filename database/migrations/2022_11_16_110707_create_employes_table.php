@@ -13,10 +13,10 @@ class CreateEmployesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employes', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+        Schema::create('employees', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
-            $table->decimal('salary', 10, 2);
+            $table->integer('salary');
 
             $table->softDeletes();
             $table->timestamps();
