@@ -6,13 +6,55 @@ Simple Rest API for calculating overtime
 
 ## Installation
 
+### Prerequisites
+
+-   PHP 7.4
+-   Composer
+-   MySQL/MariaDB
+-   Git
+
 1. Clone the repository
-2. Run `composer install`
-3. Copy `.env.example` to `.env`
-4. Replace the database credentials in `.env` file
+2. Open the project directory
+3. Run `composer install`
+
+```bash
+composer install
+```
+
+4. Copy `.env.example` to `.env`
+
+```bash
+cp .env.example .env
+```
+
+5. Replace the database credentials in `.env` file
+
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=overtime_db
+DB_USERNAME=root
+DB_PASSWORD=root
+```
+
 5. Run `php artisan test` to run the tests
+
+```bash
+php artisan test
+```
+
 6. Run `php artisan migrate:f --seed` to run the migrations and seed the database
+
+```bash
+php artisan migrate:f --seed
+```
+
 7. Run `php artisan serve` to start the server
+
+```bash
+php artisan serve
+```
 
 ## License
 
