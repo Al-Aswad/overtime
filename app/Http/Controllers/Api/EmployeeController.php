@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployeeRequest;
 use App\Repositories\EmployeeRepository;
@@ -25,6 +26,9 @@ class EmployeeController extends Controller
      */
     public function __invoke(EmployeeRequest $request)
     {
-        $this->employeeRepository->store($request->validated());
+        return ResponseFormatter::success(
+            'Setting updated successfully',
+            $this->employeeRepository->store($request->validated()),
+        );
     }
 }

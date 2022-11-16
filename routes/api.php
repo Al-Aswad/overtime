@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::patch('/settings', SettingController::class)
     ->name('settings.update');
 
-Route::post('/employee', EmployeeController::class)
+Route::post('/employees', EmployeeController::class)
     ->name('employee.store');
 
 Route::post('/overtimes', [OvertimeController::class, 'store'])

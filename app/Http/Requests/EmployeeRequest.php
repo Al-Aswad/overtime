@@ -24,8 +24,8 @@ class EmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:2',
-            'salary' => 'required|numeric',
+            'name' => 'required|string|min:2|unique:employees,name',
+            'salary' => 'required|numeric|between:2000000,10000000',
         ];
     }
 }
