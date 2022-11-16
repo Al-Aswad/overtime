@@ -12,5 +12,9 @@ class Employe extends Model
 {
     use HasFactory, Uuid, SoftDeletes, Timestamp;
 
+    protected $incrementing = false;
+
+    protected $keyType = 'string';
+
     protected $guarded = [];
 }
