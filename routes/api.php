@@ -21,10 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::patch('/settings/{setting}', [SettingController::class])
+Route::patch('/settings', SettingController::class)
     ->name('settings.update');
 
-Route::post('/employee', [EmployeeController::class])
+Route::post('/employee', EmployeeController::class)
     ->name('employee.store');
 
 Route::post('/overtimes', [OvertimeController::class, 'store'])
