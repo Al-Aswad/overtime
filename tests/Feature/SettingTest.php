@@ -2,12 +2,15 @@
 
 namespace Tests\Feature;
 
+use Database\Seeders\ReferenceSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class SettingTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_setting_invalid_key()
     {
         $response = $this->patchJson('/api/settings', [
@@ -34,6 +37,8 @@ class SettingTest extends TestCase
 
     public function test_setting_update_success()
     {
+        $this->seed(ReferenceSeeder::class);
+
         $response = $this->patchJson(
             '/api/settings',
             [
