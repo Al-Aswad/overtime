@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Reference;
 use Database\Seeders\ReferenceSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -43,7 +44,7 @@ class SettingTest extends TestCase
             '/api/settings',
             [
                 'key' => 'overtime_method',
-                'value' => 1,
+                'value' => Reference::all()->first()->id,
             ]
         );
 
